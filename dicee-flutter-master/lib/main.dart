@@ -24,14 +24,19 @@ class DicePage extends StatefulWidget {
 class _DicePageState extends State<DicePage> {
   int rightDiceNumber = 1;
   int leftDiceNumber = 1;
+
+  void updateDiceNumber() {
+    rightDiceNumber = Random().nextInt(6) + 1;
+    leftDiceNumber = Random().nextInt(6) + 1;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: FlatButton(
         onPressed: () {
           setState(() {
-            rightDiceNumber = Random().nextInt(6) + 1;
-            leftDiceNumber = Random().nextInt(6) + 1;
+            updateDiceNumber();
           });
         },
         child: Row(
