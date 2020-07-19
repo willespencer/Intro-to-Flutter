@@ -26,11 +26,22 @@ class Ball extends StatefulWidget {
 }
 
 class _State extends State<Ball> {
+  void pressButton() {
+    print('I got clicked');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Image.asset('images/ball1.png'),
+        child: FlatButton(
+          onPressed: () {
+            setState(() {
+              pressButton();
+            });
+          },
+          child: Image.asset('images/ball1.png'),
+        ),
       ),
     );
   }
