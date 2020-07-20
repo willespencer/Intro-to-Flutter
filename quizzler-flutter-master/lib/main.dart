@@ -29,10 +29,8 @@ class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
   QuizBrain quizBrain = QuizBrain();
 
-  int currIndex = 0;
-
   void handleButtonClick(bool answer) {
-    if (answer == quizBrain.questionBank[currIndex].questionAnswer) {
+    if (answer == quizBrain.getQuestionAnswer()) {
       scoreKeeper.add(
         Icon(Icons.check, color: Colors.green),
       );
@@ -41,7 +39,7 @@ class _QuizPageState extends State<QuizPage> {
         Icon(Icons.close, color: Colors.red),
       );
     }
-    currIndex += 1;
+    quizBrain.nextQuestion();
   }
 
   @override
@@ -56,7 +54,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.questionBank[currIndex].questionText,
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
