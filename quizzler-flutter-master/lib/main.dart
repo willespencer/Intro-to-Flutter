@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'quiz_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 void main() => runApp(Quizzler());
 
@@ -30,6 +31,17 @@ class _QuizPageState extends State<QuizPage> {
   QuizBrain quizBrain = QuizBrain();
 
   void handleButtonClick(bool answer) {
+    if (quizBrain.isFinished()) {
+      Alert(
+              context: context,
+              title: "Quiz Complete",
+              desc: "Congrats on finishing the quiz game!")
+          .show();
+      quizBrain.reset();
+      scoreKeeper = [];
+      return;
+    }
+
     if (answer == quizBrain.getQuestionAnswer()) {
       scoreKeeper.add(
         Icon(Icons.check, color: Colors.green),
